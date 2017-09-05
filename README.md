@@ -2,6 +2,7 @@
 
 
 #### Configuration
+Location: configs/portal.yml
 ```
 key_id: 'halo_key_id'
 secret_key: 'halo_secret_key'
