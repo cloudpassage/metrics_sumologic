@@ -2,17 +2,13 @@
 
 
 #### Configuration
-
+```
 key_id: 'halo_key_id'
-
 secret_key: 'halo_secret_key'
-
 api_hostname : api.cloudpassage.com
-
 api_port: 443
-
 sumologic_https_url: 'sumologic_https_url'
-
+```
 #### System Requirements
 
 Mac OSX and Linux only
