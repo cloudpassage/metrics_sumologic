@@ -1,4 +1,3 @@
-import re
 import cloudpassage
 from config import CONFIG
 
