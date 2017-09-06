@@ -3,6 +3,7 @@
 """Sumo class"""
 import requests
 import sys
+import json
 from config import CONFIG
 
 
@@ -11,6 +12,7 @@ class Sumologic(object):
         self.max_retry = 3
 
     def https_forwarder(self, data):
+        data = json.dumps(data, ensure_ascii=False)
         reply = requests.post(CONFIG['sumologic_https_url'], data=data)
         reply_status_code = reply.status_code
         num_attempts = 1

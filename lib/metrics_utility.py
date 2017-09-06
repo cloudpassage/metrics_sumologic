@@ -1,5 +1,4 @@
 import datetime
-import json
 import os
 from sumologic import Sumologic
 from config import CONFIG
@@ -25,7 +24,7 @@ class MetricsUtility(object):
         log = { 'os_types_summary': servers }
         data = { 'source': 'script', 'log': log, 'created_time': self.current_time }
 
-        self.sumo.https_forwarder(data=json.dumps(data, ensure_ascii=False))
+        self.sumo.https_forwarder(data)
 
     def critical_issues_summary(self):
         url = "/v2/issues?group_id=%s&descendants=true&state=active,deactivated,missing&status=active&group_by=issue_type,critical" % self.root_group["id"]
@@ -33,7 +32,7 @@ class MetricsUtility(object):
         log = { 'current_issues_by_criticality_summary': issues }
         data = { 'source': 'script', 'log': log, 'created_time': self.current_time }
 
-        self.sumo.https_forwarder(data=json.dumps(data, ensure_ascii=False))
+        self.sumo.https_forwarder(data)
 
     def os_types_summary(self):
         url = "/v2/servers?group_id=%s&descendants=true&state=active&group_by=os_distribution,os_version" % self.root_group["id"]
@@ -41,7 +40,7 @@ class MetricsUtility(object):
         log = { 'os_types_summary': os_types }
         data = { 'source': 'script', 'log': log, 'created_time': self.current_time }
 
-        self.sumo.https_forwarder(data=json.dumps(data, ensure_ascii=False))
+        self.sumo.https_forwarder(data)
 
     def sw_packages_summary(self):
         url = "/v2/servers?group_id=%s&descendants=true&state=active,missing,deactivated&group_by=os_type,package_name,package_version" % self.root_group["id"]
@@ -49,7 +48,7 @@ class MetricsUtility(object):
         log = { 'sw_packages_summary': sw_packages }
         data = { 'source': 'script', 'log': log, 'created_time': self.current_time }
 
-        self.sumo.https_forwarder(data=json.dumps(data, ensure_ascii=False))
+        self.sumo.https_forwarder(data)
 
     def processes_summary(self):
         url = "/v2/servers?group_id=%s&descendants=true&state=active,missing,deactivated&group_by=os_type,process_name" % self.root_group["id"]
@@ -57,7 +56,7 @@ class MetricsUtility(object):
         log = { 'processes_summary': processes }
         data = { 'source': 'script', 'log': log, 'created_time': self.current_time }
 
-        self.sumo.https_forwarder(data=json.dumps(data, ensure_ascii=False))
+        self.sumo.https_forwarder(data)
 
     def local_accounts_summary(self):
         url = "/v1/local_accounts?group_id=%s&descendants=true&group_by=os_type,username&per_page=100" % self.root_group["id"]
@@ -65,7 +64,7 @@ class MetricsUtility(object):
         log = { 'local_accounts_summary': local_accounts }
         data = { 'source': 'script', 'log': log, 'created_time': self.current_time }
 
-        self.sumo.https_forwarder(data=json.dumps(data, ensure_ascii=False))
+        self.sumo.https_forwarder(data)
 
     def sw_vuln_summary(self):
         url = "/v2/issues?group_id=%s&issue_type=sva&per_page=100&page=1&state=active,missing,deactivated&sort_by=critical.desc,count.desc&descendants=true&group_by=critical,issue_type,rule_key,name,policy_id&status=active" % self.root_group["id"]
@@ -73,4 +72,4 @@ class MetricsUtility(object):
         log = { 'sw_vulnerability_summary': sw_vuln }
         data = { 'source': 'script', 'log': log, 'created_time': self.current_time }
 
-        self.sumo.https_forwarder(data=json.dumps(data, ensure_ascii=False))
+        self.sumo.https_forwarder(data)
