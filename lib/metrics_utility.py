@@ -9,7 +9,6 @@ class MetricsUtility(object):
     def __init__(self):
         self.sumo_url = CONFIG['sumologic_https_url']
         self.current_time = datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S.%fZ')
-        self.max_retry = 3
         self.api = ApiController()
         self.sumo = Sumologic()
 
