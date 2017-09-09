@@ -22,7 +22,7 @@ class MetricsUtility(object):
                                                         state='active,missing,deactivated,retired',
                                                         descendants='true',
                                                         group_by='state')
-        log = {'os_types_summary': servers}
+        log = {'servers_by_state_summary': servers}
         data = {'source': 'script', 'log': log, 'created_time': self.current_time}
 
         self.sumo.https_forwarder(data)
